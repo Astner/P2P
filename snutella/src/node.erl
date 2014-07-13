@@ -301,7 +301,7 @@ do_peer_action({search, Query, matches, Matches}, State) ->
     %% TODO: You must update the history field of the State record and
     %% return this as the new state.
     
-    State.
+    State#pstate{history=NewHistory}.
     
 
 
