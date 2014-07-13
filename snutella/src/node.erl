@@ -214,8 +214,9 @@ handle_scmd({search, local, Query}, From, State) ->
     
         
     Reply = search_data(State, Query),
-
-        
+    
+    io:format("Vi kommer ut ur search_data innan krash"),
+    
     %% Send result back to CLI. 
     From ! {result, {search, local, Query}, Reply},
     
