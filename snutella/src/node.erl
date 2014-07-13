@@ -171,8 +171,10 @@ update_peers(State, Buddy) ->
     %% Update the Buddy peer if alreay known, otherwise insert the peer. 
     NewPeers = lists:keystore(Buddy#peer.pid, #peer.pid, Peers, Buddy),
     
+    
+
     %% TODO: You must update and return the new state.
-    State.
+    State#pstate{peers=NewPeers}.
     
     
 
@@ -309,6 +311,10 @@ ping(State,  [ Peer | Peers]) ->
     
     %% TODO: You must send Msg to the peer. The Pid of the peer is
     %% part of the Peer#peer record. 
+
+    PeerPID = Peer#peer.pid,
+    PeerPID ! Msg,
+    
 
     
     ping(State, Peers).
