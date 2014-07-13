@@ -1,0 +1,4 @@
+{application,'Simple Gnutella - P2P (1DT048) 2014'}.
+{packages,[]}.
+{modules,[cache,cache_cli,data,example_cli,foo_cli,gen_cli,gsl,lists_random,
+          logger,node,node_cli,setup,simple,table]}.

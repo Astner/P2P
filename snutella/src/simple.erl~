@@ -1,0 +1,41 @@
+-module(simple). 
+
+-export([start/1]).
+
+-record(state, {number=0, list=[]}).
+
+start(v1) ->
+    spawn(fun() -> loop(v1, {0, []}) end);
+start(v2) ->
+    spawn(fun() -> loop(v2, #state{}) end).
+                  
+loop(v1, {N, L} = State) ->
+    receive 
+        {add_number, M} ->
+            loop(v1, { N + M, L});
+        {add_to_head, X} ->
+            loop(v1, {N, [ X | L ]});
+        print ->
+            io:format("State = ~w~n", [State]),
+            loop(v1, State);
+        Any ->
+            io:format("Unknown message ~w~n", [Any]),
+            loop(v1, State)
+    end;
+
+loop(v2, State) ->
+    receive 
+        {add_number, M} ->
+            NewNumber = State#state.number + M,
+            loop(v2, State#state{number = NewNumber});
+        {add_to_head, X} ->
+            NewList = [ X | State#state.list ],
+            loop(v2, State#state{list=NewList});
+        print ->
+            io:format("State = ~w~n", [State]),
+            loop(v2, State);
+        Any ->
+            io:format("Unknown message ~w~n", [Any]),
+            loop(v2, State)
+    end.
+                 
