@@ -96,9 +96,11 @@ loop(State) ->
 %% 
 %% State is a record. Use the record syntax to construct a new state
 %% record based on the old one.
+
 handle_cmd({add, Country, Capital}, State) ->
-    
-    NewState = State; %% TODO: you must change this. 
+    NewData = [{Country, Capital} | State#pstate.data],
+    NewState = State#pstate{data=NewData}; 
+    %% TODO: you must change this. 
 
 
 
