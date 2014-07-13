@@ -185,7 +185,8 @@ update_peers(State, Buddy) ->
 search_data(State, Query) ->
     %% TIP: Check out the lists:keysearch/3 function in the Erlang
     %% standard library.
-    
+    io:format("Enters search_data ~n"),
+
     DataList = State#pstate.data,
     
     %%false is returned of Query is not found, otherwse the key,value tuple is returned
@@ -193,10 +194,10 @@ search_data(State, Query) ->
     
     if 
 	Answer == false ->
-	    io:format("Got a false"),
+	    io:format("Got a false~n"),
 	    [];
 	true ->
-	    io:format("Got a match"),
+	    io:format("Got a match~n"),
 	    [Answer]
     end. %% TODO: You must update this. 
 
