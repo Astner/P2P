@@ -118,7 +118,7 @@ handle_cmd(register, State) ->
     Self = mk_peer(State),
     
     %% TODO: Here you must send the tuple {hello, from, Self} to the host cache. 
-    
+    Cache ! {hello, from, Self},
     
     %% Nothing have changed, return the State unchanged.
     State;  
