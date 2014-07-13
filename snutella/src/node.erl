@@ -189,13 +189,15 @@ search_data(State, Query) ->
     DataList = State#pstate.data,
     
     %%false is returned of Query is not found, otherwse the key,value tuple is returned
-    Answer = lists:keysearch(Query, 1, DataList),
+    Answer = lists:keyfind(Query, 1, DataList),
     
     if 
 	Answer == false ->
+	    io:format("Got a false"),
 	    [];
 	true ->
-	    []
+	    io:format("Got a match"),
+	    [Answer]
     end. %% TODO: You must update this. 
 
 %% END SKIP LINES
